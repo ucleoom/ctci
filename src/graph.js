@@ -1,18 +1,31 @@
 class Graph {
-    constructor() {
-        this.vertices = [];
-        this.edges = [];
+    constructor(vcount) {
+        this.adjlist = new Array(vcount || 0).fill([]);
+        this.edges = 0;
     }
 
     v() {
-        return this.vertices.length;
+        return this.adjlist.length;
     }
 
     e() {
-        let res = 0;
-        for (let es of this.edges) {
-            res += es.length;
-        }
+        return this.edges;
+    }
+
+    adj(v) {
+        return this.adjlist[v];
+    }
+
+    addEdge(v, w) {
+        this.adjlist[v].push(w);
+        this.adjlist[w].push(v);
+        this.edges++;
+    }
+
+    addVertex() {
+        let res = this.v();
+
+        this.adjlist.push([]);
         return res;
     }
 }

@@ -1,6 +1,7 @@
 class Node {
-    constructor(data) {
+    constructor(data, parent) {
         this.data = data;
+        this.parent = parent;
     }
 }
 
@@ -25,7 +26,7 @@ class BinaryTree {
 function doPut(node, key) {
     let res = node;
     if (!node) {
-        res = new Node(key);
+        res = new Node(key, node);
     } else if (key < node.data) {
         node.left = doPut(node.left, key);
     } else {
