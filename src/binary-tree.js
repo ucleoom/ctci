@@ -23,14 +23,14 @@ class BinaryTree {
     }
 }
 
-function doPut(node, key) {
+function doPut(node, key, parent) {
     let res = node;
     if (!node) {
-        res = new Node(key, node);
+        res = new Node(key, parent);
     } else if (key < node.data) {
-        node.left = doPut(node.left, key);
+        node.left = doPut(node.left, key, node);
     } else {
-        node.right = doPut(node.right, key);
+        node.right = doPut(node.right, key, node);
     }
     
     return res;
