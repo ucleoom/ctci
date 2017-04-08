@@ -21,6 +21,10 @@ class BinaryTree {
 
         return res.get('max') - res.get('min') <= 1;
     }
+
+    toString() {
+        return doToString(this.root, 0);
+    }
 }
 
 function doPut(node, key, parent) {
@@ -50,5 +54,17 @@ function doDepth(node, fnMap) {
     return res;
 }
 
+function doToString(tree, level) {
+    let res = '';
+
+    if (tree) {
+        
+        res += "  ".repeat(level) + tree.data + "\n";
+        
+        res += doToString(tree.left, level + 1);
+        res += doToString(tree.right, level + 1);
+    }
+    return res;
+}
 
 export default BinaryTree;
