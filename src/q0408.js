@@ -12,27 +12,23 @@ class Solution {
 
 function dfs(subtree, sum, res, current, n) {
     if (subtree) {
-        let arr = copy(current);
-        arr.push(subtree.data);
+        let aux = current.concat([subtree.data]);
 
         if (sum + subtree.data === n) {
-            res.push(arr);
-        } 
-        dfs(subtree.left, sum + subtree.data, res, arr, n);
-        dfs(subtree.right, sum + subtree.data, res, arr, n);
-        
-            dfs(subtree.left, 0, res, [], n);
-            dfs(subtree.right, 0, res, [], n);
-    }
-}
-
-function copy(arr) {
-    let res = [];
-
-    for(let elem of arr) {
-        res.push(elem);
-    }
-    return res;
+            res.push(aux);
+        } else {
+            let subs = 0;
+            for(let i = 0; i < aux.length - 1; i++) {
+                subs += current[i];
+                if (sum + subtree.data - subs === n) {
+                    res.push(aux.slice(i + 1));
+                }
+            }
+        }
+        dfs(subtree.left, sum + subtree.data, res, aux, n);
+        dfs(subtree.right, sum + subtree.data, res, aux, n);
+       
+    } 
 }
 
 export default Solution;

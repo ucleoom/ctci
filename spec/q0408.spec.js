@@ -16,6 +16,8 @@ describe('Solution', function() {
         tree.put(3);
         tree.put(4);
 
-        console.log(solution.pathWithSum(tree, 4));
+        expect(solution.pathWithSum(tree, 4)).toEqual([[2, 1, 1], [2, 2], [4]]);
+        expect(solution.pathWithSum(tree, 2)).toEqual([[2], [1, 1], [2]]);
+
     });
 });
